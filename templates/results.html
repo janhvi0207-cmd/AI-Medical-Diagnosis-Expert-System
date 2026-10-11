@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Results - AI Medical Diagnosis System{% endblock %}
+{% block page %}results{% endblock %}
+{% block content %}
+<section class="section results">
+  <div class="container">
+    <noscript>
+      <div class="alert alert-warn">Results are drawn by JavaScript. Please enable it.</div>
+    </noscript>
+
+    <!-- Empty state: no assessment in this browser tab -->
+    <div id="results-empty" class="panel center" hidden>
+      <h2>No assessment results to show</h2>
+      <p class="muted">Results are kept only in this browser tab and disappear when the tab is
+      closed. Complete an assessment to see them.</p>
+      <a class="btn" href="{{ url_for('assessment') }}">Start Symptom Assessment</a>
+    </div>
+
+    <div id="results-root" hidden></div>
+  </div>
+</section>
+{% endblock %}

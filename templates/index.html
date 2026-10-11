@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block page %}home{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-text">
+      <p class="eyebrow">College AI laboratory project</p>
+      <h1>AI Medical Diagnosis System</h1>
+      <p class="lead">Answer a short set of structured symptom questions and watch a rule-based
+      expert system reason about them. It uses <strong>forward chaining</strong> and
+      <strong>backward chaining</strong> and shows every step it takes.</p>
+      <div class="hero-actions">
+        <a class="btn btn-large" href="{{ url_for('assessment') }}">Start Symptom Assessment</a>
+        <a class="btn btn-ghost btn-large" href="#how-it-works">See how it works</a>
+      </div>
+      <p class="hero-note">Takes about two minutes &middot; no sign-up &middot; nothing is stored</p>
+    </div>
+    <div class="hero-panel" aria-hidden="true">
+      <div class="hero-chip chip-fact">fever = Yes</div>
+      <div class="hero-chip chip-rule">Rule R3: fever + body aches</div>
+      <div class="hero-chip chip-new">New fact: whole-body symptoms</div>
+      <div class="hero-chip chip-goal">Goal: flu-like pattern?</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">What this project does</h2>
+    <div class="card-grid">
+      <article class="card">
+        <div class="icon icon-teal" aria-hidden="true">&#10010;</div>
+        <h3>Symptom assessment</h3>
+        <p>Structured Yes / No / Not Sure questions about common symptoms. "No" and
+        "Not Sure" are kept strictly separate.</p>
+      </article>
+      <article class="card">
+        <div class="icon icon-navy" aria-hidden="true">&#9881;</div>
+        <h3>AI reasoning</h3>
+        <p>A Python expert system applies illustrative if-then rules with two different
+        inference strategies and explains each step.</p>
+      </article>
+      <article class="card">
+        <div class="icon icon-teal" aria-hidden="true">&#9888;</div>
+        <h3>Safety first</h3>
+        <p>Urgent warning signs are checked separately from the rules and always shown first.
+        Results are educational possibilities, never diagnoses.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="how-it-works">
+  <div class="container">
+    <h2 class="section-title">How it works</h2>
+    <p class="section-intro">Both algorithms use the <em>same</em> answers and the <em>same</em>
+    rules. They differ in the direction they reason.</p>
+    <div class="two-col">
+      <article class="card algo">
+        <span class="tag tag-teal">Data-driven</span>
+        <h3>Forward chaining</h3>
+        <ol class="steps">
+          <li>Start with the facts from your Yes answers.</li>
+          <li>Find rules whose conditions are all satisfied.</li>
+          <li>Fire them to add new facts (e.g. "nasal symptoms present").</li>
+          <li>Repeat until no new facts appear.</li>
+        </ol>
+        <p class="muted">Facts &rarr; rules &rarr; new facts &rarr; patterns</p>
+      </article>
+      <article class="card algo">
+        <span class="tag tag-navy">Goal-driven</span>
+        <h3>Backward chaining</h3>
+        <ol class="steps">
+          <li>Pick a hypothesis, e.g. "flu-like pattern".</li>
+          <li>Find the rules that could conclude it.</li>
+          <li>Treat each condition as a sub-goal and prove it recursively.</li>
+          <li>Report supported, unsupported or inconclusive.</li>
+        </ol>
+        <p class="muted">Goal &rarr; rules &rarr; conditions &rarr; known facts</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="safety">
+  <div class="container">
+    <div class="safety-panel">
+      <h2>Please read before you start</h2>
+      <ul>
+        <li>This is a learning tool. It <strong>does not diagnose</strong>, confirm or rule out
+        any disease, and it does not suggest medicines or doses.</li>
+        <li>The rules are small illustrative examples, <strong>not medically validated</strong>.</li>
+        <li>If you have severe breathing difficulty, chest pain, confusion or blue lips, seek
+        emergency help immediately.</li>
+        <li>No names, contact details or other personal information are collected.</li>
+      </ul>
+      <a class="btn" href="{{ url_for('assessment') }}">Start Symptom Assessment</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

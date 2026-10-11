@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}Symptom Assessment - AI Medical Diagnosis System{% endblock %}
+{% block page %}assessment{% endblock %}
+{% block content %}
+<section class="section assess">
+  <div class="container narrow">
+
+    <div id="emergency-banner" class="alert alert-danger" role="alert" hidden>
+      <strong>Urgent guidance</strong>
+      <p id="emergency-text"></p>
+    </div>
+
+    <noscript>
+      <div class="alert alert-warn">This assessment needs JavaScript enabled in your browser.</div>
+    </noscript>
+
+    <!-- Loading questions -->
+    <div id="view-boot" class="panel center">
+      <div class="spinner" aria-hidden="true"></div>
+      <p>Loading questions&hellip;</p>
+    </div>
+
+    <!-- One question at a time -->
+    <div id="view-question" class="panel" hidden>
+      <div class="progress-head">
+        <span id="progress-text" class="progress-text"></span>
+        <span id="group-tag" class="tag tag-teal"></span>
+      </div>
+      <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+
+      <fieldset class="question">
+        <legend id="question-text"></legend>
+        <p id="question-hint" class="muted"></p>
+        <div class="options" id="options"></div>
+      </fieldset>
+      <p id="answer-needed" class="muted small">Please choose an answer to continue.</p>
+
+      <div class="actions">
+        <button type="button" class="btn btn-ghost" id="btn-back">Back</button>
+        <button type="button" class="btn" id="btn-next">Next</button>
+      </div>
+      <div class="actions-sub">
+        <button type="button" class="link-btn" id="btn-review-jump" hidden>Skip to review</button>
+        <button type="button" class="link-btn" id="btn-restart">Restart</button>
+      </div>
+    </div>
+
+    <!-- Review screen -->
+    <div id="view-review" class="panel" hidden>
+      <h2>Review your answers</h2>
+      <p class="muted">Check your answers. You can change any of them before submitting.</p>
+      <div id="review-counts" class="chips"></div>
+      <div id="review-list" class="review-list"></div>
+      <div class="actions">
+        <button type="button" class="btn btn-ghost" id="btn-review-back">Back to questions</button>
+        <button type="button" class="btn" id="btn-submit">Submit Assessment</button>
+      </div>
+      <div class="actions-sub">
+        <button type="button" class="link-btn" id="btn-restart-review">Restart</button>
+      </div>
+    </div>
+
+    <!-- Processing -->
+    <div id="view-loading" class="panel center" hidden role="status" aria-live="polite">
+      <div class="spinner" aria-hidden="true"></div>
+      <h2>Running the reasoning engines&hellip;</h2>
+      <p class="muted">Applying forward chaining and backward chaining to your answers.</p>
+    </div>
+
+    <!-- Error -->
+    <div id="view-error" class="panel" hidden role="alert">
+      <h2>We could not complete the assessment</h2>
+      <p id="error-text"></p>
+      <ul id="error-details"></ul>
+      <div class="actions">
+        <button type="button" class="btn btn-ghost" id="btn-error-back">Back to review</button>
+        <button type="button" class="btn" id="btn-retry">Try again</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
